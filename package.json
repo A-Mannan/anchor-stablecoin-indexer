@@ -1,0 +1,12 @@
+{
+  "name": "subgraph",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "deploy-local": "graph create anchor_indexer --node http://127.0.0.1:8020 && graph deploy anchor_indexer --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020 --version-label=v0.0.1"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-ts": "^0.35.1"
+  }
+}

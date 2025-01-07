@@ -1,0 +1,1 @@
+# anchor-stablecoin-indexer

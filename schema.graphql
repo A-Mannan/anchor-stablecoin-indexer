@@ -1,0 +1,9 @@
+type Borrower @entity {
+  id: ID! # This will be the address
+  debt: BigInt!
+  collateral: BigInt!
+  collateralRatio: BigDecimal!
+  isRedemptionProvider: Boolean! # True if the borrower is also a redemption provider
+  redemptionFeeRate: BigInt # Optional, only set if the borrower is a redemption provider
+  redemptionAmount: BigInt # Optional, only set if the borrower is a redemption provider
+}

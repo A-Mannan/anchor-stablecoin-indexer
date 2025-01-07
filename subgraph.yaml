@@ -1,0 +1,42 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+
+dataSources:
+  - kind: ethereum/contract
+    name: AnchorEngine
+    network: mainnet # Adjust this to your network (e.g. rinkeby, goerli)
+    source:
+      address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0" # Replace with your deployed contract address
+      abi: AnchorEngine
+      # startBlock: YOUR_START_BLOCK # Replace with the block number where your contract was deployed
+
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Borrower
+        # - RedemptionProvider
+      abis:
+        - name: AnchorEngine
+          file: ./abis/AnchorEngine.json
+      eventHandlers:
+        - event: DepositEther(address,indexed address,uint256,uint256)
+          handler: handleDepositEther
+        - event: WithdrawEther(address,indexed address,uint256,uint256)
+          handler: handleWithdrawEther
+        - event: Mint(address,indexed address,uint256,uint256)
+          handler: handleMint
+        - event: Burn(address,indexed address,uint256,uint256)
+          handler: handleBurn
+        - event: RedemptionProviderRegistered(indexed address,uint256,uint256)
+          handler: handleRedemptionProviderRegistered
+        - event: RedemptionProviderRemoved(indexed address)
+          handler: handleRedemptionProviderRemoved
+        - event: RedeemedCollateral(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleRedeemedCollateral
+        - event: LiquidationRecord(address,address,indexed address,uint256,uint256,uint256,uint256)
+          handler: handleLiquidationRecord
+      file: ./src/mappings/index.ts
+
