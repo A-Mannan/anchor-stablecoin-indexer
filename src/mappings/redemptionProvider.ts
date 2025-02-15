@@ -36,7 +36,7 @@ export function handleRedeemedCollateral(event: RedeemedCollateral): void {
   provider.collateral = provider.collateral.minus(event.params.etherAmount);
 
   if (provider.isRedemptionProvider && provider.redemptionAmount) {
-    provider.redemptionAmount = provider.redemptionAmount.minus(
+    provider.redemptionAmount = provider.redemptionAmount!.minus(
       event.params.anchorUSDAmount
     );
   }

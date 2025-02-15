@@ -4,7 +4,7 @@ import { calculateCollateralRatio, getOrCreateBorrower } from "../utils/helpers"
 export function handleLiquidationRecord(event: LiquidationRecord): void {
   let onBehalfOf = getOrCreateBorrower(event.params.onBehalfOf.toHex());
   // onBehalfOf.debt = onBehalfOf.debt.minus(event.params.anchorUSDAmount);
-  onBehalfOf.collateral = onBehalfOf.collateral.plus(
+  onBehalfOf.collateral = onBehalfOf.collateral.minus(
     event.params.LiquidateEtherAmount
   );
   onBehalfOf.collateralRatio = calculateCollateralRatio(onBehalfOf.collateral, onBehalfOf.debt);
